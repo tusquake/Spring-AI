@@ -62,5 +62,32 @@ Welcome to the ultimate Spring AI curriculum! This project contains step-by-step
 | [Topic 29: PDF Text To Vector DB](./documentation/Topic-29-PDF-Text-To-Vector-DB/README.md) | Full Controller endpoint reading PDFs (`PagePdfDocumentReader`) and chunking payloads. | Inline in README |
 | [Topic 30: Run Local AI Docker](./documentation/Topic-30-Run-Local-AI-Docker/README.md) | Complete detachment from paid APIs by securely running Ollama in a private container. | Conceptual |
 
+### Phase 8: Agents & Function Calling
+| Topic | Concept Overview | Code |
+|---|---|---|
+| [Topic 31: Tool Calling in LLMs](./documentation/Topic-31-Tool-Calling-in-LLMs/README.md) | Understanding how LLMs execute real-world Java functions via FunctionCallback. | Conceptual |
+| [Topic 32: AI Agent using Spring AI](./documentation/Topic-32-AI-Agent-using-Spring-AI/README.md) | Building autonomous agents that orchestrate multiple tools to solve complex goals. | Conceptual |
+| [Topic 33: HelpDesk Project Part 1](./documentation/Topic-33-HelpDesk-Project-Part-1/README.md) | Bootstrapping a real-world ticketing system with strict HelpBot persona constraints. | Conceptual |
+| [Topic 34: HelpDesk Project Part 2](./documentation/Topic-34-HelpDesk-Project-Part-2/README.md) | Integrating database mutation tools (createTicket, checkStatus) into the ChatClient. | Conceptual |
+| [Topic 35: HelpDesk Project Part 3](./documentation/Topic-35-HelpDesk-Project-Part-3/README.md) | Fixing hallucinations and isolating user sessions leveraging Chat Memory Advisors. | Conceptual |
+
+### Phase 9: Full Stack, Multi-modal & MCP
+| Topic | Concept Overview | Code |
+|---|---|---|
+| [Topic 36: HelpDesk Project Part 4](./documentation/Topic-36-HelpDesk-Project-Part-4/README.md) | Finishing the backend with streaming SSE Flux responses and JDBC Vector DB Memory persistence. | Conceptual |
+| [Topic 37: HelpDesk Frontend React](./documentation/Topic-37-HelpDesk-Frontend-React/README.md) | Building the full-stack UI using React, Tailwind, and ShadcnUI to consume SSE streams. | Conceptual |
+| [Topic 38: Audio Transcription](./documentation/Topic-38-Audio-Transcription-OpenAI/README.md) | Processing `.wav`/`.mp3` voice inputs into text using Spring AI `AudioTranscriptionModel`. | Conceptual |
+| [Topic 39: Gemini Integration Guide](./documentation/Topic-39-Gemini-Integration-Guide/README.md) | Deep dive into `spring-ai-google-genai` configuration and evaluating images natively in prompts. | Conceptual |
+| [Topic 40: Model Context Protocol (MCP)](./documentation/Topic-40-Model-Context-Protocol-MCP/README.md) | Architecture of MCP transport layers and auto-discovering remote agent tools securely. | Conceptual |
+
+### Phase 10: Production Readiness & Enterprise Features
+| Topic | Concept Overview | Code |
+|---|---|---|
+| [Topic 41: AI Observability (Micrometer)](./documentation/Topic-41-AI-Observability-Micrometer/README.md) | Tracing AI request latency and logging token/financial costs across microservices. | Conceptual |
+| [Topic 42: Evaluating LLM Responses](./documentation/Topic-42-Evaluating-LLM-Responses/README.md) | Writing automated JUnit tests to ensure your AI isn't hallucinating using the Evaluation API. | Conceptual |
+| [Topic 43: Resiliency & Rate Limiting](./documentation/Topic-43-Resiliency-and-Rate-Limiting/README.md) | Using Spring Retry to handle HTTP 429 Too Many Requests errors natively. | Conceptual |
+| [Topic 44: Image Generation (DALL-E & Imagen)](./documentation/Topic-44-Image-Generation-DallE-Imagen/README.md) | Exploring the `ImageModel` to construct Generative Art from text descriptions. | Conceptual |
+| [Topic 45: Text-to-Speech (TTS)](./documentation/Topic-45-Text-to-Speech-TTS/README.md) | Delivering voice responses from your bot converting LLM text into spoken MP3 files. | Conceptual |
+
 ---
 *Curriculum index generated focusing on Spring AI architecture and advanced engineering best practices.*

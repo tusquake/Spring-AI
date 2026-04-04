@@ -45,5 +45,34 @@ You cannot just append an infinite chat history. Every word you send back to the
 
 Therefore, Chat Memory tools also implement **Windowing** (e.g., "Only remember the last 10 messages").
 
+---
+
+### Flow Diagram: Overcoming Amnesia
+
+```mermaid
+sequenceDiagram
+    participant User
+    participant System as ChatClient (App)
+    participant Memory as ChatMemory
+    participant LLM as Stateless Model
+    
+    Note over User,LLM: Standard (Amnesia)
+    User->>System: "I am Bob."
+    System->>LLM: "I am Bob."
+    LLM-->>User: "Hi Bob."
+    User->>System: "What is my name?"
+    System->>LLM: "What is my name?"
+    LLM-->>User: "I don't know."
+    
+    Note over User,LLM: With Chat Memory
+    User->>System: "What is my name?"
+    System->>Memory: Fetch Session Transcript
+    Memory-->>System: ["I am Bob.", "Hi Bob."]
+    System->>LLM: ["I am Bob.", "Hi Bob."] + "What is my name?"
+    LLM-->>User: "Your name is Bob."
+```
+
+---
+
 ### Next Steps
 In the next topic, we will move from theory to practice by implementing an `InMemoryChatMemory`.

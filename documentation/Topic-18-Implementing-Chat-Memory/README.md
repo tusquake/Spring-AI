@@ -68,6 +68,26 @@ public class ChatMemoryController {
 
 ---
 
+### Flow Diagram: `InMemoryChatMemory` Logic
+
+```mermaid
+sequenceDiagram
+    participant Controller
+    participant Advisor as MessageChatMemoryAdvisor
+    participant RAM as InMemoryChatMemory
+    participant LLM as AI Provider
+    
+    Controller->>Advisor: .prompt().user("Hello!").call()
+    Advisor->>RAM: Retrieve previous messages ("global-session-id")
+    RAM-->>Advisor: Return empty list
+    Advisor->>LLM: Request: "Hello!"
+    LLM-->>Advisor: "Hello, how can I help?"
+    Advisor->>RAM: Store User "Hello!" + AI Answer
+    Advisor-->>Controller: Return Final Answer
+```
+
+---
+
 ### Testing the Implementation
 
 If you run the application, you can test if memory is working by asking two sequential questions using `curl`:

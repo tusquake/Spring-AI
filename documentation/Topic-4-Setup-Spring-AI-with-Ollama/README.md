@@ -1,10 +1,10 @@
-# Topic 4: Setup with Free LLM (Ollama) 🌋
+# Topic 4: Setup with Free LLM (Ollama)
 
 Want to run AI for free, offline, and with 100% privacy? This is where **Ollama** and Spring AI come in. Let's learn how to run a powerful LLM like Llama 3 or Mistral directly on your laptop.
 
 ---
 
-### 🎨 Real-World Analogy: The Coffee Machine (Nespresso)
+### Real-World Analogy: The Coffee Machine (Nespresso)
 
 - **OpenAI** (Topic 3) was like going to a café. You pay per drink, you don't own the equipment, but the coffee is high-quality.
 - **Ollama** is like owning a **Nespresso machine** at home.
@@ -14,7 +14,7 @@ Want to run AI for free, offline, and with 100% privacy? This is where **Ollama*
 
 ---
 
-### 📁 Prerequisites: Installing Ollama
+### Prerequisites: Installing Ollama
 Before you write any Java code, you need the Ollama engine running on your machine:
 1.  Download from [ollama.com](https://ollama.com/).
 2.  Install it (Windows/macOS/Linux).
@@ -26,9 +26,9 @@ Before you write any Java code, you need the Ollama engine running on your machi
 
 ---
 
-### 🧪 Integration Steps
+### Integration Steps
 
-#### 1. 📁 Add Dependencies (`pom.xml`)
+#### 1. Add Dependencies (pom.xml)
 We use the official Spring AI Ollama starter.
 ```xml
 <dependency>
@@ -37,14 +37,14 @@ We use the official Spring AI Ollama starter.
 </dependency>
 ```
 
-#### 2. 📝 Configuration (`application.properties`)
+#### 2. Configuration (application.properties)
 Ollama runs on a local port (default: 11434).
 ```properties
 spring.ai.ollama.base-url=http://localhost:11434
 spring.ai.ollama.chat.options.model=llama3
 ```
 
-#### 3. 👨‍💻 Writing Code (`OllamaController.java`)
+#### 3. Writing Code (OllamaController.java)
 The code remains almost identical to OpenAI because of **Model Agnosticism**.
 ```java
 @RestController
@@ -65,7 +65,7 @@ public class LocalAIController {
 
 ---
 
-### 🧠 Flow Diagram: The Local AI Lifecycle
+### Flow Diagram: The Local AI Lifecycle
 
 ```mermaid
 graph LR
@@ -78,7 +78,7 @@ graph LR
 
 ---
 
-### 🌟 Why use Ollama/Local LLMs?
+### Why use Ollama/Local LLMs?
 - **💰 100% Free**: No recurring API bills or usage limits.
 - **🔒 Privacy**: Your data never leaves your computer. Perfect for processing sensitive documents.
 - **🛰️ Offline**: Works without an internet connection.
@@ -86,12 +86,20 @@ graph LR
 
 ---
 
-### 🛑 Troubleshooting
+### Troubleshooting
 - **Model not found**: Run `ollama pull [model-name]` in your terminal to download it.
 - **Connection Refused**: Make sure the Ollama app is actually running in your system tray.
 - **Wait... it's slow!**: LLMs require a lot of RAM and GPU power. If your computer stays stuck, try a smaller model like `tinyllama` or `phi3`.
 
 ---
 
-### 🏁 Summary
+### How to Test
+Run the following command in your terminal (Ensure Ollama is running with `llama3`):
+```bash
+curl "http://localhost:8080/topic-4/local-ai?prompt=What+is+the+capital+of+France?"
+```
+
+---
+
+### Summary
 Running local AI with Spring AI is as simple as running cloud AI. You've now mastered both worlds—Cloud (OpenAI) and Local (Ollama). You are officially a Spring AI Expert! 🎓

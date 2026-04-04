@@ -1,10 +1,10 @@
-# Topic 2: Key Features of Spring AI 🗝️
+# Topic 2: Key Features of Spring AI
 
 Spring AI is not just a wrapper for API calls; it’s a full-featured framework that introduces common patterns for AI development. Let's look at the "Big 4" features that make it essential for Java developers.
 
 ---
 
-### 🎨 Real-World Analogy: The Restaurant Menu
+### Real-World Analogy: The Restaurant Menu
 
 Think of building an AI application like running a restaurant.
 - **Model Agnostic**: You have several suppliers (Providers like OpenAI, Anthropic, etc.). If one supplier raises prices or has a shortage, you just switch to another without changing your recipes (**Model Agnosticism**).
@@ -14,14 +14,14 @@ Think of building an AI application like running a restaurant.
 
 ---
 
-### 🌟 Feature Breakdown
+### Feature Breakdown
 
-#### 1. 🌍 Model Agnostic (Interchangeability)
+#### 1. Model Agnostic (Interchangeability)
 Spring AI provides a unified interface for all major AI models.
 - **How it works:** You use the `ChatModel` interface in your Java code.
 - **Advantage:** You can switch from OpenAI to Azure AI or Ollama by just changing a dependency and a line in `application.properties`.
 
-#### 2. 📝 Prompt Templates
+#### 2. Prompt Templates
 Writing complex prompts as simple strings is messy. Spring AI uses templates with placeholders.
 ```java
 String template = "Translate the text: {text} into {language}.";
@@ -29,11 +29,11 @@ PromptTemplate promptTemplate = new PromptTemplate(template);
 Prompt prompt = promptTemplate.create(Map.of("text", "Hello", "language", "Hindi"));
 ```
 
-#### 3. 🧩 Output Parsers (Structured Output)
+#### 3. Output Parsers (Structured Output)
 Large Language Models (LLMs) return raw text. But for a Java app, we need structured data (JSON, POJO, List).
 - **How it works:** You define a Java record or class, and Spring AI tells the LLM to format the response so that it can automatically be mapped into that Java object.
 
-#### 4. 📚 Advanced RAG Support (Retrieval Augmented Generation)
+#### 4. Advanced RAG Support (Retrieval Augmented Generation)
 RAG allows the AI to "read" your custom data (PDFs, Databases, Documents).
 - **Embedded ETL Pipeline:** Spring AI provides a built-in process to:
     - **Load** (Read documents)
@@ -43,7 +43,7 @@ RAG allows the AI to "read" your custom data (PDFs, Databases, Documents).
 
 ---
 
-### 🧠 Flow Diagram: The AI Request Lifecycle
+### Flow Diagram: The AI Request Lifecycle
 
 ```mermaid
 sequenceDiagram
@@ -61,7 +61,7 @@ sequenceDiagram
 
 ---
 
-### 🏁 Summary of Key Benefits
+### Summary of Key Benefits
 
 | Feature | Key Benefit |
 | :--- | :--- |
@@ -74,3 +74,4 @@ sequenceDiagram
 
 ### Next Up...
 In Topic 3, we will see these features in action by creating our **First AI Project** integrating with OpenAI!
+

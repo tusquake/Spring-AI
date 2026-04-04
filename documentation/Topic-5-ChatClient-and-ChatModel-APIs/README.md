@@ -1,10 +1,10 @@
-# Topic 5: Master ChatClient & ChatModel APIs 🛠️
+# Topic 5: Master ChatClient & ChatModel APIs
 
 In Spring AI, you have two primary ways to interact with an AI model: **`ChatModel`** and **`ChatClient`**. While they might sound similar, they serve different purposes and offer different levels of abstraction.
 
 ---
 
-### 🎨 Real-World Analogy: The Expert vs. The Assistant
+### Real-World Analogy: The Expert vs. The Assistant
 
 Imagine you need to get a complex legal document summarized.
 
@@ -24,7 +24,7 @@ Imagine you need to get a complex legal document summarized.
 
 ---
 
-### 👨‍💻 `ChatModel` Implementation (The "Old" / Low-Level Way)
+### ChatModel Implementation (The "Old" / Low-Level Way)
 Requires manual handling of `Prompt` and `ChatResponse` objects.
 ```java
 @RestController
@@ -44,7 +44,7 @@ public class ModelController {
 }
 ```
 
-### 👨‍💻 `ChatClient` Implementation (The "New" / Fluent Way)
+### ChatClient Implementation (The "New" / Fluent Way)
 Uses a modern, chainable API that is much more readable.
 ```java
 @RestController
@@ -67,7 +67,7 @@ public class ClientController {
 
 ---
 
-### 🧠 Flow Diagram: Architecture Overview
+### Flow Diagram: Architecture Overview
 
 ```mermaid
 graph TD
@@ -81,7 +81,7 @@ graph TD
 
 ---
 
-### 🌟 Why prefer `ChatClient`?
+### Why prefer ChatClient?
 1.  **Readability**: Chainable methods like `.user()`, `.system()`, `.advisors()`, and `.entity()` make code look like a sentence.
 2.  **Advisors (Interceptors)**: Easily add logging, memory (history), or safety filters using `.advisors()`.
 3.  **Entity Mapping**: `.entity(MyPojo.class)` automatically converts AI response to your Java object.
@@ -89,6 +89,18 @@ graph TD
 
 ---
 
-### 🏁 Summary
+### How to Test
+Try both the low-level Model API and the high-level Fluent Client API:
+```bash
+# Test Model API
+curl "http://localhost:8080/topic-5/model?message=Explain+Spring+AI+briefly"
+
+# Test Fluent Client API (Pirate Mode)
+curl "http://localhost:8080/topic-5/client?message=Hello+how+are+you?"
+```
+
+---
+
+### Summary
 - Use **`ChatModel`** if you are building your own AI framework or need raw, low-level access to the model's metadata.
 - Use **`ChatClient`** for building your applications. It’s cleaner, safer, and follows modern Spring "Fluent API" standards.

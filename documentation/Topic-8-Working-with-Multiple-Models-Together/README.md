@@ -1,46 +1,42 @@
-# Topic 8: Working with Multiple Models Together 🤝
+# Topic 8: Working with Multiple Models Together
 
-In a real-world project, you rarely use just one model. You might use **GPT-4o** for complex reasoning, **Gemini** for its large context window, and **DALL-E** for generating images. Spring AI makes it incredibly easy to "Mix and Match" models in a single project.
+In a real-world project, you rarely use just one model. You might use **Gemini** for its large context window, and **Ollama** for running local, private models for free. Spring AI makes it incredibly easy to "Mix and Match" models in a single project.
 
 ---
 
-### 🎨 Real-World Analogy: The Dream Team
+### Real-World Analogy: The Dream Team
 
 Think of your application as a **Movie Production Crew**:
-1.  **The Script Writer (OpenAI GPT-4)**: Elite writing and logic.
-2.  **The Visual Effects Artist (OpenAI DALL-E 3)**: Creates stunning images based on the script.
-3.  **The Translator (Google Gemini)**: Handles multi-language subtitles efficiently.
-4.  **The Local Intern (Ollama / Llama 3)**: Handles quick, non-sensitive tasks for free (like spell-checking).
+1.  **The High-End Consultant (Google Gemini)**: Elite writing and logic.
+2.  **The Local Intern (Ollama / Llama 3)**: Handles quick, non-sensitive tasks for free (like basic categorization).
 
 You (the developer) are the **Director**, telling each expert when to perform their task.
 
 ---
 
-### 🧠 Flow Diagram: Orchestration Workflow
+### Flow Diagram: Orchestration Workflow
 
 ```mermaid
 graph TD
     A[User Request] --> B[Spring Boot Director]
-    B -- Step 1: Brainstorming --> C[OpenAI ChatModel]
+    B -- Step 1: Creative Idea --> C[Google Gemini]
     C -- Idea Text --> B
-    B -- Step 2: Visual Generation --> D[DALL-E ImageModel]
-    D -- Image URL --> B
-    B -- Step 3: Local Logging --> E[Ollama ChatModel]
-    E -- Response --> B
+    B -- Step 2: Local Logging/Refinement --> D[Ollama Llama 3]
+    D -- Processed Response --> B
     B -- Final Package --> F[User UI]
 ```
 
 ---
 
-### 🛠️ Configuration for Multiple Models
+### Configuration for Multiple Models
 
 You can include multiple starters in your `pom.xml`.
 
 ```xml
-<!-- OpenAI Starter -->
+<!-- Google GenAI Starter -->
 <dependency>
     <groupId>org.springframework.ai</groupId>
-    <artifactId>spring-ai-openai-spring-boot-starter</artifactId>
+    <artifactId>spring-ai-google-genai</artifactId>
 </dependency>
 
 <!-- Ollama Starter -->
@@ -50,10 +46,10 @@ You can include multiple starters in your `pom.xml`.
 </dependency>
 ```
 
-#### 📝 `application.properties`
+#### application.properties
 ```properties
-# OpenAI Config
-spring.ai.openai.api-key=${OPENAI_API_KEY}
+# Google Gemini Config
+spring.ai.google.genai.api-key=${GOOGLE_API_KEY}
 
 # Ollama Config (Local)
 spring.ai.ollama.base-url=http://localhost:11434
@@ -61,7 +57,7 @@ spring.ai.ollama.base-url=http://localhost:11434
 
 ---
 
-### 👨‍💻 Orchestration in Java
+### Orchestration in Java
 
 Spring AI provides `@Qualifier` to distinguish between different models when multiple are present.
 
@@ -69,44 +65,38 @@ Spring AI provides `@Qualifier` to distinguish between different models when mul
 @Service
 public class MultiModelService {
 
-    private final ChatModel openAiModel;
+    private final ChatModel geminiModel;
     private final ChatModel ollamaModel;
-    private final ImageModel imageModel;
 
     public MultiModelService(
-            @Qualifier("openAiChatModel") ChatModel openAiModel,
-            @Qualifier("ollamaChatModel") ChatModel ollamaModel,
-            ImageModel imageModel) {
-        this.openAiModel = openAiModel;
+            @Qualifier("googleGenAiChatModel") ChatModel geminiModel,
+            @Qualifier("ollamaChatModel") ChatModel ollamaModel) {
+        this.geminiModel = geminiModel;
         this.ollamaModel = ollamaModel;
-        this.imageModel = imageModel;
     }
 
-    public AiResponse generateContent(String topic) {
-        // Step 1: Use OpenAI for high-quality text
-        String story = openAiModel.call("Write a pitch for a story about " + topic);
+    public String generateContent(String topic) {
+        // Step 1: Use Gemini for high-quality text
+        String story = geminiModel.call("Write a pitch for a story about " + topic);
 
-        // Step 2: Use DALL-E for a cover image
-        ImageResponse image = imageModel.call(new ImagePrompt("A cinematic cover for: " + topic));
-
-        // Step 3: Use Ollama to log locally (No cost)
+        // Step 2: Use Ollama to log locally (No cost)
         ollamaModel.call("Logging content creation for topic: " + topic);
 
-        return new AiResponse(story, image.getResult().getOutput().getUrl());
+        return story;
     }
 }
 ```
 
 ---
 
-### 🌟 Advanced Scenario: Fallback Support
-You can create a "Smart Fallback" system. If OpenAI fails (due to budget or outage), your code can automatically catch the exception and call Ollama as a backup.
+### Advanced Scenario: Fallback Support
+You can create a "Smart Fallback" system. If Gemini fails (due to budget or outage), your code can automatically catch the exception and call Ollama as a backup.
 
-#### 💡 Fallback Logic Example:
+#### Fallback Logic Example:
 ```java
 public String askAI(String prompt) {
     try {
-        return openAiModel.call(prompt); // Primary
+        return geminiModel.call(prompt); // Primary
     } catch (Exception e) {
         return ollamaModel.call(prompt); // Free Backup
     }
@@ -115,9 +105,24 @@ public String askAI(String prompt) {
 
 ---
 
-### 🏁 Summary
+### How to Test
+Test the orchestration logic (Hybrid vs Fallback):
+```bash
+# Test Hybrid Strategy (Gemini + Ollama)
+# Calls Gemini for ideas and Ollama for a summary
+curl "http://localhost:8080/topic-8/hybrid?prompt=Future+of+Space+Exploration"
+
+# Test Fallback Strategy
+# Tries Gemini first, if it fails (e.g. invalid key), it calls Ollama
+curl "http://localhost:8080/topic-8/fallback?prompt=Help+me+debug+this+Java+error"
+```
+
+---
+
+### Summary
 - **Independence**: Each model lives in its own "Starter" but works under a unified API.
-- **Portability**: You can swap out your "Script Writer" from OpenAI to Anthropic by just changing a qualifier and properties.
+- **Portability**: You can swap out your "Script Writer" from Gemini to OpenAI by just changing a qualifier and properties.
 - **Cost/Privacy Balance**: Use Cloud models for the heavy-lifting and Local models for background processing.
 
-**Congratulations!** You now know how to build complex, multi-model AI systems using the Spring framework. 🚀
+**Congratulations!** You now know how to build complex, multi-model AI systems using the Spring framework.
+

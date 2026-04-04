@@ -1,11 +1,11 @@
-# Topic 1: What is Spring AI? 🚀
+# Topic 1: What is Spring AI?
 
 ### Introduction
 **Spring AI** is a groundbreaking framework from the Spring ecosystem designed to simplify the integration of Artificial Intelligence (AI) into Enterprise Java applications. Just as Spring simplified the complexities of JEE (Java Enterprise Edition), Spring AI simplifies the complexities of working with various AI models (LLMs like OpenAI, Gemini, Hugging Face) by providing a unified, portable, and standard API.
 
 ---
 
-### 🎨 Real-World Analogy: The Universal Charging Port (USB-C)
+### Real-World Analogy: The Universal Charging Port (USB-C)
 
 Imagine you have multiple electronic devices (iPhone, Android, Laptop, Camera). In the old days, each device needed a specific, unique charger. If you switched your phone from Brand A to Brand B, your old charger was useless.
 
@@ -14,7 +14,7 @@ Imagine you have multiple electronic devices (iPhone, Android, Laptop, Camera). 
 
 ---
 
-### 🧠 Why we need Spring AI? (Problem vs Solution)
+### Why we need Spring AI? (Problem vs Solution)
 
 | Aspect | Traditional Approach (Manual API Call) | Spring AI Approach |
 | :--- | :--- | :--- |
@@ -25,7 +25,7 @@ Imagine you have multiple electronic devices (iPhone, Android, Laptop, Camera). 
 
 ---
 
-### 🛠️ The Architecture Flow
+### The Architecture Flow
 
 Here is how Spring AI sits between your application and the AI models:
 
@@ -45,7 +45,7 @@ graph TD
 
 ---
 
-### 🔑 Key Concepts to Remember
+### Key Concepts to Remember
 
 1.  **AI Model Interoperability:** Support for multiple providers (OpenAI, Microsoft, Amazon AWS, Google, etc.).
 2.  **Portable API:** Use standard interfaces like `ChatModel`, `EmbeddingModel`, and `ImageModel`.
@@ -54,5 +54,6 @@ graph TD
 
 ---
 
-### 🏁 Summary
+### Summary
 Spring AI is not just another library; it's a **Design Pattern** for the future of Java development. It allows you to build AI-powered features (Chatbots, Data Analyzers, Image Generators) while keeping your code clean, modular, and vendor-neutral.
+

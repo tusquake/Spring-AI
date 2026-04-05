@@ -43,7 +43,7 @@ public class TokenUsageAdvisor implements CallAdvisor {
             if (usage != null) {
                 log.info("[TokenUsageAdvisor] Token Usage - Prompt: {}, Generation: {}, Total: {}",
                         usage.getPromptTokens(),
-                        usage.getGenerationTokens(),
+                        usage.getCompletionTokens(),
                         usage.getTotalTokens());
             }
         }

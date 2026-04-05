@@ -9,15 +9,15 @@ Think of ordering food at a busy fast-food restaurant. You don't stand at the re
 ## Architecture Flow
 ```mermaid
 flowchart TD
-    Client --> |1. HTTP Upload| Web[Web Controller]
-    Web --> |2. Publish Event| IngressTopic[Kafka Topic: document.ingested]
-    Web --> Client: HTTP 202 Accepted
-    IngressTopic --> AIWorker[Spring AI Worker Node]
-    AIWorker --> |3. Process| LLM(LLM API)
+    Client --> |"1. HTTP Upload"| Web["Web Controller"]
+    Web --> |"2. Publish Event"| IngressTopic["Kafka Topic: document.ingested"]
+    Web --> |"HTTP 202 Accepted"| Client
+    IngressTopic --> AIWorker["Spring AI Worker Node"]
+    AIWorker --> |"3. Process"| LLM("LLM API")
     LLM --> AIWorker
-    AIWorker --> |4. Publish Result| EgressTopic[Kafka Topic: document.summarized]
-    EgressTopic --> Notifier[WebSocket Notifier]
-    Notifier --> |5. Push| Client
+    AIWorker --> |"4. Publish Result"| EgressTopic["Kafka Topic: document.summarized"]
+    EgressTopic --> Notifier["WebSocket Notifier"]
+    Notifier --> |"5. Push"| Client
 ```
 
 ## Concepts

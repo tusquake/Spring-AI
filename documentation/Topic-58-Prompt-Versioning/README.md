@@ -9,13 +9,12 @@ Think of the teleprompter screen used by a news anchor. If you want the anchor t
 ## Architecture Flow
 ```mermaid
 flowchart LR
-    Req[User Request] --> ChatClient
-    ChatClient --> Loader[ResourceLoader]
-    Loader --> |Version 1 Active| V1[prompt_v1.st]
-    Loader --> |Version 2 Active| V2[prompt_v2.st]
+    Req["User Request"] --> ChatClient
+    ChatClient --> Loader["ResourceLoader (A/B Testing routing)"]
+    Loader --> |"Version 1 Active"| V1["prompt_v1.st"]
+    Loader --> |"Version 2 Active"| V2["prompt_v2.st"]
     V1 --> chatModel
     V2 --> chatModel
-    Note over Loader: Allows rapid config driven A/B Testing
 ```
 
 ## Concepts
